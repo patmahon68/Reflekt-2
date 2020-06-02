@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 public class Main extends JFrame implements ActionListener {
-    //hehe i am a stinky poopoo -alex
 
     javax.swing.Timer myTimer;
     CardLayout cLayout = new CardLayout();
