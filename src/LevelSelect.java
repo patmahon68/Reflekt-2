@@ -7,7 +7,7 @@ class LevelSelect extends JPanel implements MouseMotionListener, MouseListener {
     private Image back,arenaSelect;
     private Main mainFrame;
     Image next = new ImageIcon("Screens/Main Menu/next.png").getImage();
-    Rectangle playButton=new Rectangle(400,690,next.getWidth(null),next.getHeight(null));
+    Rectangle playButton=new Rectangle(770,690,next.getWidth(null),next.getHeight(null));
     private int version=0;
     private boolean picked=false;
     ArrayList<Rectangle> choices;
@@ -55,7 +55,7 @@ class LevelSelect extends JPanel implements MouseMotionListener, MouseListener {
         g.drawImage(back,0,0,null);
         g.drawImage(arenaSelect,0,0,null);
         if (picked) {
-            g.drawImage(next, 400, 690, null);
+            g.drawImage(next, 770, 690, null);
         }
         System.out.println("levels");
     }

@@ -16,9 +16,6 @@ public class Main extends JFrame implements ActionListener{
     //all buttons
 
 
-    Icon next = new ImageIcon("Screens/Main Menu/next.png");
-
-    JButton nextButton=new JButton(next);
 
     //all pages
     StartMenu menuPage =new StartMenu(this);
@@ -37,8 +34,7 @@ public class Main extends JFrame implements ActionListener{
 
 
         add(charPage);
-        nextButton.addActionListener(this);
-        charPage.add(nextButton);//start is for pvp
+
 
         add(levelPage);
 
@@ -67,12 +63,6 @@ public class Main extends JFrame implements ActionListener{
     }
     public void actionPerformed(ActionEvent evt){
         //respond to each button
-        Object source = evt.getSource();
-
-        if(source==nextButton){
-            showNewScreen("level");
-        }
-
         cards.repaint();
 
     }
@@ -89,9 +79,7 @@ public class Main extends JFrame implements ActionListener{
 
         }
         if (name == "char") {
-            System.out.println();
             charPage.requestFocusInWindow();
-            System.out.println(charPage.isVisible());
         }
         if(name == "level"){
             levelPage.requestFocusInWindow();
