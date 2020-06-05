@@ -15,8 +15,6 @@ import java.util.*;
 public class Map extends JPanel implements KeyListener, ActionListener {
     private ArrayList<Rectangle> walls;
     private ArrayList<Image> itemPics;
-    private String[] allpowerups=new String[]{"Jump Boost","Bullet Pack","Big Bullets","Invincibility",
-            "Fast Bullets","Longer Shield","Bigger Shield","Rocket Launcher","Extra Life","Single Bullet"};
     private String[] powerups=new String[]{"Bullet Pack","Longer Shield","Bigger Shield","Extra Life","Fast Bullets","Invincibility","Jump Boost","Single Bullet"};
     private LinkedList<Powerup> items;
     private int[][] spawnPoints;
@@ -831,15 +829,7 @@ public class Map extends JPanel implements KeyListener, ActionListener {
         if (version==2 || version==5){
             g.drawImage(eyePic,488,500,null);
         }
-        //walls
 
-/*
-        g.setColor(new Color(255,255,255,100));
-        for (Rectangle wall:walls){
-            g.fillRect(wall.x,wall.y,wall.width,wall.height);
-        }
-
- */
 
     }
 

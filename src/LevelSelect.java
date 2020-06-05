@@ -10,7 +10,9 @@ class LevelSelect extends JPanel implements MouseMotionListener, MouseListener {
     Rectangle playButton=new Rectangle(770,690,next.getWidth(null),next.getHeight(null));
     private int version=0;
     private boolean picked=false;
-    ArrayList<Rectangle> choices;
+    private Rectangle choice;
+    private ArrayList<Rectangle> choices;
+    private ArrayList<Image> boldImages;
 
 
 
@@ -21,6 +23,7 @@ class LevelSelect extends JPanel implements MouseMotionListener, MouseListener {
         arenaSelect = new ImageIcon("Screens/Level Screen/LevelSelectScreen.png").getImage();
         mainFrame = m;
         addChoiceBoxes();
+        loadPics();
         setSize(1024,768);
         addMouseMotionListener(this);
         addMouseListener(this);
@@ -30,6 +33,22 @@ class LevelSelect extends JPanel implements MouseMotionListener, MouseListener {
         super.addNotify();
         requestFocus();
         mainFrame.start();
+    }
+
+    public void loadPics(){
+        boldImages=new ArrayList<>();
+        Image pic1=new ImageIcon("Screens/Level Screen/SewerSelected.png").getImage();
+        Image pic2=new ImageIcon("Screens/Level Screen/ForestSelected.png").getImage();
+        Image pic3=new ImageIcon("Screens/Level Screen/UnderwaterSelected.png").getImage();
+        Image pic4=new ImageIcon("Screens/Level Screen/DesertSelected.png").getImage();
+        Image pic5=new ImageIcon("Screens/Level Screen/CitySelected.png").getImage();
+        Image pic6=new ImageIcon("Screens/Level Screen/CastleSelected.png").getImage();
+        boldImages.add(pic1);
+        boldImages.add(pic2);
+        boldImages.add(pic3);
+        boldImages.add(pic4);
+        boldImages.add(pic5);
+        boldImages.add(pic6);
     }
 
     public void addChoiceBoxes(){
@@ -56,6 +75,7 @@ class LevelSelect extends JPanel implements MouseMotionListener, MouseListener {
         g.drawImage(arenaSelect,0,0,null);
         if (picked) {
             g.drawImage(next, 770, 690, null);
+            g.drawImage(boldImages.get(choices.indexOf(choice)),choice.x,choice.y,null);
         }
         System.out.println("levels");
     }
@@ -74,6 +94,7 @@ class LevelSelect extends JPanel implements MouseMotionListener, MouseListener {
             if (r.contains(mouseEvent.getX(),mouseEvent.getY())){
                 picked=true;
                 version=choices.indexOf(r);
+                choice=r;
             }
         }
     }
