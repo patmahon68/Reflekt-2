@@ -21,7 +21,7 @@ public class Main extends JFrame implements ActionListener{
     StartMenu menuPage =new StartMenu(this);
     CharSelect charPage = new CharSelect(this);
     LevelSelect levelPage = new LevelSelect(this);
-    //Map newGame=new Map(0,this,2);
+    Map newGame=new Map(0,this,2);
 
     public Main() {
         super("REFLEKT");
@@ -38,14 +38,14 @@ public class Main extends JFrame implements ActionListener{
 
         add(levelPage);
 
-        //add(newGame);
-        //newGame.setLayout(null);
+        add(newGame);
+        newGame.setLayout(null);
 
 
 
         cards = new JPanel(cLayout);//panel to hold the other panels
         cards.add(menuPage, "menu");
-        //cards.add(newGame,"game");
+        cards.add(newGame,"game");
         cards.add(charPage ,"char");
         cards.add(levelPage,"level");
         add(cards);

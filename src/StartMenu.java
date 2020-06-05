@@ -45,7 +45,7 @@ class StartMenu extends JPanel implements MouseMotionListener, MouseListener {
     }
     public void mousePressed(MouseEvent mouseEvent) {
         if (startButton.contains(mouseEvent.getX(),mouseEvent.getY())){
-            mainFrame.showNewScreen("char");
+            mainFrame.showNewScreen("game");
         }
     }
 

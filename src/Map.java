@@ -85,7 +85,6 @@ public class Map extends JPanel implements KeyListener, ActionListener {
             walls=makeWalls(5);
             possibleLocations=new int[][]{new int[]{500,260,0},new int[]{348,390,0},new int[]{660,390,0},new int[]{430,645,0},new int[]{590,645,0}};
             spawnPoints=new int[][]{new int[]{180,275},new int[]{180,655},new int[]{825,275},new int[]{825,655}};}
-
         players=new ArrayList<>();
         for (int i=1;i<numOfPlayers+1;i++){
             players.add(new Player(i));
@@ -131,7 +130,6 @@ public class Map extends JPanel implements KeyListener, ActionListener {
         eyePic=eyePic.getScaledInstance(45,45,Image.SCALE_SMOOTH);
         blockPic=new ImageIcon("items/block.png").getImage();
         blockPic=blockPic.getScaledInstance(130,130,Image.SCALE_SMOOTH);
-
     }
 
     public ArrayList<Rectangle> makeWalls(int version){
@@ -882,6 +880,7 @@ public class Map extends JPanel implements KeyListener, ActionListener {
             g.fillRect(p.getX(), p.getY(), 15, 40);
             g.setColor(Color.YELLOW);
             g.fillRect(p.getFeetBox().x, p.getFeetBox().y, p.getFeetBox().width, p.getFeetBox().height);
+            g.drawImage(p.getFrame(),p.getX(),p.getY(),null);
 
             if (p.isInvincible()){
                 g.setColor(new Color(252,255,45,75));

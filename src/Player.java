@@ -29,6 +29,13 @@ public class Player {
     private ArrayList<String> currentPowers;
     private int rightBtn,leftBtn,upBtn,downBtn,shootBtn,blockBtn,jumpBtn;
 
+    private ArrayList<Image> lankPics;
+    private ArrayList<Image> darkLankPics;
+    private ArrayList<Image> chronicPics;
+    private ArrayList<Image> tonicPics;
+    private ArrayList<Image> gigaGuyPics;
+    private ArrayList<Image> petaPalPics;
+
     public Player(int playerNum){
         loadPics();
         lives=2;
@@ -85,8 +92,6 @@ public class Player {
         currentFrame=1;
         currentPowers=new ArrayList<>();
         //addPower("Longer Shield");
-
-
     }
 
     public void loadPics(){
@@ -105,7 +110,12 @@ public class Player {
 
             }
             bulletPics.add(bulletPic);
-
+        }
+        lankPics=new ArrayList<>();
+        for (int i=1;i<37;i++) {
+            Image lankPic;
+            lankPic = new ImageIcon("Sprites/Lank/lank"+i+".png").getImage();
+            lankPics.add(lankPic);
         }
     }
 
@@ -162,8 +172,6 @@ public class Player {
         headBox=new Rectangle(x,y-2,15,8);
         rightBox=new Rectangle(x+15,y,5,35);
         shieldHitBox=new Rectangle(x+7-(int)shieldRadius,y+20-(int)shieldRadius,2*(int)shieldRadius,2*(int)shieldRadius);
-
-
     }
 
     public void addPower(String name){
@@ -195,6 +203,9 @@ public class Player {
         if (name!="Extra Life" && name!="Bullet Pack" && name!="Single Bullet" && name!="Invincibility") {
             currentPowers.add(name);
         }
+    }
+    public Image getFrame(){
+     return lankPics.get(0);
     }
 
     public int getX(){

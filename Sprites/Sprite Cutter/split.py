@@ -1,6 +1,7 @@
 from pygame import *
 init()
-BASE = "chronic"
+BASE = 'chronic sprite sheet'
+OUTBASE = 'chronic'
 pic1 = image.load(BASE+".png").convert(32,SRCALPHA)
 
 wid,hi = pic1.get_size()
@@ -54,7 +55,7 @@ while bott<hi:
         if left == wid:break
         right = findOpenCol(pic,top,bott,left)
         cnt+=1
-        image.save(pic.subsurface((left,top,right-left+1,bott-top+1)),"%s%03d.png" % (BASE, cnt))
+        image.save(pic.subsurface((left,top,right-left+1,bott-top+1)),"%s%d.png" % (OUTBASE,cnt))
         draw.rect(screen,(255,0,0),(left,top,right-left+1,bott-top+1),1)
         display.flip()
         

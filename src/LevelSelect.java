@@ -12,9 +12,6 @@ class LevelSelect extends JPanel implements MouseMotionListener, MouseListener {
     private boolean picked=false;
     ArrayList<Rectangle> choices;
 
-
-
-
     public LevelSelect(Main m){
         back = new ImageIcon("Screens/Main Menu/storm.gif").getImage();
         back = back.getScaledInstance(1024,768,Image.SCALE_SMOOTH);
@@ -46,10 +43,7 @@ class LevelSelect extends JPanel implements MouseMotionListener, MouseListener {
         choices.add(rect4);
         choices.add(rect5);
         choices.add(rect6);
-
     }
-
-
 
     public void paintComponent(Graphics g){
         g.drawImage(back,0,0,null);
