@@ -35,7 +35,7 @@ public class Map extends JPanel implements KeyListener, ActionListener {
     private Main mainFrame;
     javax.swing.Timer myTimer;
 
-    public Map(int version, Main m, int numOfPlayers){
+    public Map(int version, Main m, int numOfPlayers,int p1,int p2){
         keys = new boolean[KeyEvent.KEY_LAST+1];
         this.version=version;
         block=new Block();
@@ -89,9 +89,9 @@ public class Map extends JPanel implements KeyListener, ActionListener {
             possibleLocations=new int[][]{new int[]{500,260,0},new int[]{348,390,0},new int[]{660,390,0},new int[]{430,645,0},new int[]{590,645,0}};
             spawnPoints=new int[][]{new int[]{180,275},new int[]{180,655},new int[]{825,275},new int[]{825,655}};}
         players=new ArrayList<>();
-        for (int i=1;i<numOfPlayers+1;i++){//create the players
-            players.add(new Player(i));
-        }
+        System.out.println(p1);
+        players.add(new Player(1,p1));
+        players.add(new Player(2,p2));
         loadPics();
     }
 
@@ -451,7 +451,6 @@ public class Map extends JPanel implements KeyListener, ActionListener {
 
     public void moveBlock(){
         block.setCounter(block.getCounter()+1);
-        System.out.println(block.getCounter());
         if (block.getCounter()%290==0){//alternate between moving and not moving
             block.setMoving(!block.isMoving());
             if (block.isMoving()){
@@ -855,27 +854,57 @@ public class Map extends JPanel implements KeyListener, ActionListener {
                 if (p.getDir()=="up"){
                     //draw an arrow in the direction the bullet would go if the player released at that time
                     g.drawImage(arrowPics.get(7),p.getX()+2,p.getY()-35, null);
+                    int newX=p.getX()-(p.getShootFrame("up").getWidth(null)/2);
+                    int newY=p.getY()-(p.getShootFrame("up").getHeight(null)/2);
+                    g.drawImage(p.getShootFrame("up") ,newX,newY, null);
                 }
                 else if (p.getDir()=="right"){
                     g.drawImage(arrowPics.get(4),p.getX()+15,p.getY()+15, null);
+                    int newX=p.getX()-(p.getShootFrame("right").getWidth(null)/2);
+                    int newY=p.getY()-(p.getShootFrame("right").getHeight(null)/2);
+                    g.drawImage(p.getShootFrame("right") ,newX,newY, null);
                 }
                 else if (p.getDir()=="down"){
                     g.drawImage(arrowPics.get(0),p.getX()+2,p.getY()+35, null);
+                    int newX=p.getX()-(p.getShootFrame("down").getWidth(null)/2);
+                    int newY=p.getY()-(p.getShootFrame("down").getHeight(null)/2);
+                    g.drawImage(p.getShootFrame("down") ,newX,newY, null);
                 }
                 else if (p.getDir()=="left"){
                     g.drawImage(arrowPics.get(1),p.getX()-35,p.getY()+15, null);
+                    int w = p.getFrame().getWidth(null);
+                    int h = p.getFrame().getHeight(null);
+                    int newX=p.getX()-(p.getShootFrame("left").getWidth(null)/2);
+                    int newY=p.getY()-(p.getShootFrame("left").getHeight(null)/2);
+                    g.drawImage(p.getShootFrame("left") ,newX+w,newY,-w,h, null);
                 }
                 else if (p.getDir()=="up/right"){
                     g.drawImage(arrowPics.get(6),p.getX()+15,p.getY()-35, null);
+                    int newX=p.getX()-(p.getShootFrame("up/right").getWidth(null)/2);
+                    int newY=p.getY()-(p.getShootFrame("up/right").getHeight(null)/2);
+                    g.drawImage(p.getShootFrame("up/right") ,newX,newY, null);
                 }
                 else if (p.getDir()=="down/right"){
                     g.drawImage(arrowPics.get(5),p.getX()+15,p.getY()+35, null);
+                    int newX=p.getX()-(p.getShootFrame("down/right").getWidth(null)/2);
+                    int newY=p.getY()-(p.getShootFrame("down/right").getHeight(null)/2);
+                    g.drawImage(p.getShootFrame("down/right") ,newX,newY, null);
                 }
                 else if (p.getDir()=="up/left"){
                     g.drawImage(arrowPics.get(2),p.getX()-35,p.getY()-35, null);
+                    int w = p.getFrame().getWidth(null);
+                    int h = p.getFrame().getHeight(null);
+                    int newX=p.getX()-(p.getShootFrame("up/left").getWidth(null)/2);
+                    int newY=p.getY()-(p.getShootFrame("up/left").getHeight(null)/2);
+                    g.drawImage(p.getShootFrame("up/left") ,newX+w,newY,-w,h, null);
                 }
                 else if (p.getDir()=="down/left"){
                     g.drawImage(arrowPics.get(3),p.getX()-35,p.getY()+35, null);
+                    int w = p.getFrame().getWidth(null);
+                    int h = p.getFrame().getHeight(null);
+                    int newX=p.getX()-(p.getShootFrame("down/left").getWidth(null)/2);
+                    int newY=p.getY()-(p.getShootFrame("down/left").getHeight(null)/2);
+                    g.drawImage(p.getShootFrame("down/left") ,newX+w,newY,-w,h, null);
                 }
             }
         }
@@ -884,13 +913,15 @@ public class Map extends JPanel implements KeyListener, ActionListener {
 
     public void drawPlayers(Graphics g){
         for (Player p:players) {
-            //////
-            g.setColor(Color.RED);
-            g.fillRect(p.getX(), p.getY(), 15, 40);
-            //////
-            g.setColor(Color.YELLOW);
-            g.fillRect(p.getFeetBox().x, p.getFeetBox().y, p.getFeetBox().width, p.getFeetBox().height);
-            g.drawImage(p.getFrame(),p.getX(),p.getY(),null);
+            int newX=p.getX()-(p.getFrame().getWidth(null)/2);
+            int newY=p.getY()-(p.getFrame().getHeight(null)/2);
+            if(p.getDir()== "right") {
+                g.drawImage(p.getFrame(), newX, newY, null);
+            }else if (p.getDir()=="left"){
+                int w = p.getFrame().getWidth(null);
+                int h = p.getFrame().getHeight(null);
+                g.drawImage(p.getFrame(), newX + w, newY , -w, h, null);
+            }
 
             if (p.isInvincible()){//golden glow around player when they are invincible
                 g.setColor(new Color(252,255,45,75));
@@ -911,7 +942,6 @@ public class Map extends JPanel implements KeyListener, ActionListener {
                 else{
                     g.drawImage(b.getPic(), (int) b.getX()-40, (int) b.getY(), null);
                 }
-
             }
         }
     }

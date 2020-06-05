@@ -31,8 +31,6 @@ class StartMenu extends JPanel implements MouseMotionListener, MouseListener {
     }
 
 
-
-
     public void paintComponent(Graphics g){
         g.drawImage(back,0,0,null);
         g.drawImage(title, 200,200, null);
@@ -45,7 +43,7 @@ class StartMenu extends JPanel implements MouseMotionListener, MouseListener {
     }
     public void mousePressed(MouseEvent mouseEvent) {
         if (startButton.contains(mouseEvent.getX(),mouseEvent.getY())){
-            mainFrame.showNewScreen("game");
+            mainFrame.showNewScreen("char");
         }
     }
 

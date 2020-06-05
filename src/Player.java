@@ -24,23 +24,24 @@ public class Player {
     private double shieldRechargeMod;//how quickly shield recharges
     private double shieldRadius;//size of shield
     private Boolean activeShield;
-    private ArrayList<Image> frames;
     private int currentFrame;
+    private int wait;
+    private int delay;
     private ArrayList<Image> bulletPics;
+    private String shootDir;
+
+    private int playerchoice;
 
     private ArrayList<String> currentPowers;
     private int rightBtn,leftBtn,upBtn,downBtn,shootBtn,blockBtn,jumpBtn;
 
-    private ArrayList<Image> lankPics;
-    private ArrayList<Image> darkLankPics;
-    private ArrayList<Image> chronicPics;
-    private ArrayList<Image> tonicPics;
-    private ArrayList<Image> gigaGuyPics;
-    private ArrayList<Image> petaPalPics;
+    private ArrayList<Image> spritePics;
 
-    public Player(int playerNum){
+    public Player(int playerNum,int playerchoice){
         loadPics();
         //starting values for all variables
+        wait=75;
+        delay=0;
         lives=2;
         jumpCounter=0;
         invincibleCounter=0;
@@ -58,6 +59,7 @@ public class Player {
         maxShieldEnergy=30;
         shieldRechargeMod=1;
         bulletSpeedMod=1;
+        playerchoice=playerchoice;
         if (playerNum==1){
             //spawn point
             x=200;
@@ -71,7 +73,6 @@ public class Player {
             blockBtn=KeyEvent.VK_E;
             jumpBtn=KeyEvent.VK_R;
             dir="right";
-
         }
         else if (playerNum==2){
             x=800;
@@ -98,30 +99,82 @@ public class Player {
         //addPower("Longer Shield");
     }
 
-    public void loadPics(){
-        bulletPics=new ArrayList<>();
+    public void loadPics() {
+        bulletPics = new ArrayList<>();
         //create the frames for bullets
-        for (int i=1;i<9;i++) {
+        for (int i = 1; i < 9; i++) {
             Image bulletPic;
-            bulletPic = new ImageIcon("Bullet/bullet"+i+".png").getImage();
-            if (i==1 || i==6) {
+            bulletPic = new ImageIcon("Bullet/bullet" + i + ".png").getImage();
+            if (i == 1 || i == 6) {
                 bulletPic = bulletPic.getScaledInstance(20, 40, Image.SCALE_SMOOTH);
-            }
-            else if (i==4 || i==5){
+            } else if (i == 4 || i == 5) {
                 bulletPic = bulletPic.getScaledInstance(40, 20, Image.SCALE_SMOOTH);
-            }
-            else{
+            } else {
                 bulletPic = bulletPic.getScaledInstance(40, 40, Image.SCALE_SMOOTH);
 
             }
             bulletPics.add(bulletPic);
         }
-        lankPics=new ArrayList<>();
-        for (int i=1;i<37;i++) {
-            Image lankPic;
-            lankPic = new ImageIcon("Sprites/Lank/lank"+i+".png").getImage();
-            lankPics.add(lankPic);
+        /*
+        if (playerchoice == 1) {
+            spritePics = new ArrayList<>();
+            for (int i = 0; i < 16; i++) {
+                Image gigaPic;
+                gigaPic = new ImageIcon("Sprites/Giga Guy/gigaGuy" + i + ".png").getImage();
+                gigaPic = gigaPic.getScaledInstance(50, 100, Image.SCALE_SMOOTH);
+                spritePics.add(gigaPic);
+            }
         }
+        if (playerchoice == 2) {
+            spritePics = new ArrayList<>();
+            for (int i = 0; i < 16; i++) {
+                Image petaPic;
+                petaPic = new ImageIcon("Sprites/Peta Pal/petaPal" + i + ".png").getImage();
+                petaPic = petaPic.getScaledInstance(50, 100, Image.SCALE_SMOOTH);
+                spritePics.add(petaPic);
+            }
+        }
+        if (playerchoice == 3) {
+            spritePics = new ArrayList<>();
+            for (int i = 0; i < 19; i++) {
+                Image tonicPic;
+                tonicPic = new ImageIcon("Sprites/Tonic/tonic" + i + ".png").getImage();
+                tonicPic = tonicPic.getScaledInstance(50, 100, Image.SCALE_SMOOTH);
+                spritePics.add(tonicPic);
+            }
+        }
+        if (playerchoice == 4) {
+            spritePics = new ArrayList<>();
+            for (int i = 0; i < 19; i++) {
+                Image chronicPic;
+                chronicPic = new ImageIcon("Sprites/Chronic/chronic" + i + ".png").getImage();
+                chronicPic = chronicPic.getScaledInstance(50, 100, Image.SCALE_SMOOTH);
+                spritePics.add(chronicPic);
+            }
+        }
+
+         */
+        //if (playerchoice == 5) {
+            spritePics = new ArrayList<>();
+            for (int i = 0; i < 17; i++) {
+                Image lankPic;
+                lankPic = new ImageIcon("Sprites/Lank/lank" + i + ".png").getImage();
+                lankPic = lankPic.getScaledInstance(50, 100, Image.SCALE_SMOOTH);
+                spritePics.add(lankPic);
+                System.out.println(playerchoice);
+            }
+       // }
+        /*
+        if (playerchoice == 6) {
+            spritePics = new ArrayList<>();
+            for (int i = 0; i < 17; i++) {
+                Image darkLankPic;
+                darkLankPic = new ImageIcon("Sprites/Dark Lank/darkLank" + i + ".png").getImage();
+                darkLankPic = darkLankPic.getScaledInstance(50, 100, Image.SCALE_SMOOTH);
+                spritePics.add(darkLankPic);
+            }
+        }
+         */
     }
 
     public void move(){
@@ -211,8 +264,48 @@ public class Player {
             currentPowers.add(name);
         }
     }
-    public Image getFrame(){
-     return lankPics.get(0);
+    public Image getFrame() {
+        if (speedX != 0 && onGround) {
+            if(currentFrame<12||currentFrame>16){
+                currentFrame=12;
+            }
+            delay += 1;
+            if (delay % wait == 0) {
+                if (currentFrame == 16) {
+                    currentFrame = 12;
+                }
+                currentFrame++;
+            }
+            return spritePics.get(currentFrame);
+        }
+        if (onGround==false) {
+            return spritePics.get(2);
+        }
+        if (speedX == 0) {
+            return spritePics.get(1);
+        }
+        return spritePics.get(0);
+    }
+
+    public Image getShootFrame(String shootDir){
+        if(onGround){
+            if(shootDir=="up"){
+                return spritePics.get(11);
+            }
+            if(shootDir=="down"){
+                return spritePics.get(9);
+            }
+            if(shootDir=="right"||shootDir=="left"){
+                return spritePics.get(3);
+            }
+            if(shootDir=="up/right"||shootDir=="up/left"){
+                return spritePics.get(5);
+            }
+            if(shootDir=="down/right"||shootDir=="down/left"){
+                return spritePics.get(7);
+            }
+        }
+        return null;
     }
 
     //accessor methods

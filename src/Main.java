@@ -21,7 +21,7 @@ public class Main extends JFrame implements ActionListener{
     StartMenu menuPage =new StartMenu(this);
     CharSelect charPage = new CharSelect(this);
     LevelSelect levelPage = new LevelSelect(this);
-    Map newGame=new Map(0,this,2);
+    Map newGame=new Map(0,this,2,charPage.getP1(),charPage.getP2());
 
     public Main() {
         super("REFLEKT");
@@ -51,7 +51,6 @@ public class Main extends JFrame implements ActionListener{
         add(cards);
         setResizable(false);
         setVisible(true);
-
     }
 
 
@@ -70,12 +69,14 @@ public class Main extends JFrame implements ActionListener{
         cLayout.show(cards,name);//show the new panel
         if (name=="game"){
             System.out.println("game time");
-            Map newGame=new Map(levelPage.getVersion(),this,2);
+            System.out.println(charPage.getP1());
+            Map newGame=new Map(levelPage.getVersion(),this,2,charPage.getP1(),charPage.getP2());
             add(newGame);
             newGame.setLayout(null);
             cards.add(newGame,"game");
             cLayout.show(cards,"game");
             newGame.requestFocusInWindow();//new panel needs focus
+
 
         }
         if (name == "char") {
@@ -85,8 +86,6 @@ public class Main extends JFrame implements ActionListener{
             levelPage.requestFocusInWindow();
         }
     }
-
-
     public static void main(String[] arguments) {
         Main frame = new Main();
     }
