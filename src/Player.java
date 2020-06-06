@@ -3,7 +3,6 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -30,7 +29,7 @@ public class Player {
     private ArrayList<Image> bulletPics;
     private String shootDir;
 
-    private int playerchoice;
+    private int playerChoice;
 
     private ArrayList<String> currentPowers;
     private int rightBtn,leftBtn,upBtn,downBtn,shootBtn,blockBtn,jumpBtn;
@@ -38,7 +37,6 @@ public class Player {
     private ArrayList<Image> spritePics;
 
     public Player(int playerNum,int playerchoice){
-        loadPics();
         //starting values for all variables
         wait=75;
         delay=0;
@@ -51,7 +49,7 @@ public class Player {
         onGround=false;
         onWall=false;
         activeShield=false;
-        shieldRadius=25;
+        shieldRadius=40;
         jumpMod=1;
         numOfBullets=3;
         shieldEnergy=30;
@@ -59,7 +57,8 @@ public class Player {
         maxShieldEnergy=30;
         shieldRechargeMod=1;
         bulletSpeedMod=1;
-        playerchoice=playerchoice;
+        playerChoice =playerchoice;
+        loadPics();
         if (playerNum==1){
             //spawn point
             x=200;
@@ -96,10 +95,10 @@ public class Player {
         bullets=new LinkedList<>();
         currentFrame=1;
         currentPowers=new ArrayList<>();
-        //addPower("Longer Shield");
     }
 
     public void loadPics() {
+        System.out.println("loading pics");
         bulletPics = new ArrayList<>();
         //create the frames for bullets
         for (int i = 1; i < 9; i++) {
@@ -115,9 +114,8 @@ public class Player {
             }
             bulletPics.add(bulletPic);
         }
-        /*
-        if (playerchoice == 1) {
-            spritePics = new ArrayList<>();
+        spritePics = new ArrayList<>();
+        if (playerChoice == 1) {
             for (int i = 0; i < 16; i++) {
                 Image gigaPic;
                 gigaPic = new ImageIcon("Sprites/Giga Guy/gigaGuy" + i + ".png").getImage();
@@ -125,8 +123,7 @@ public class Player {
                 spritePics.add(gigaPic);
             }
         }
-        if (playerchoice == 2) {
-            spritePics = new ArrayList<>();
+        if (playerChoice == 2) {
             for (int i = 0; i < 16; i++) {
                 Image petaPic;
                 petaPic = new ImageIcon("Sprites/Peta Pal/petaPal" + i + ".png").getImage();
@@ -134,8 +131,7 @@ public class Player {
                 spritePics.add(petaPic);
             }
         }
-        if (playerchoice == 3) {
-            spritePics = new ArrayList<>();
+        if (playerChoice == 3) {
             for (int i = 0; i < 19; i++) {
                 Image tonicPic;
                 tonicPic = new ImageIcon("Sprites/Tonic/tonic" + i + ".png").getImage();
@@ -143,8 +139,7 @@ public class Player {
                 spritePics.add(tonicPic);
             }
         }
-        if (playerchoice == 4) {
-            spritePics = new ArrayList<>();
+        if (playerChoice == 4) {
             for (int i = 0; i < 19; i++) {
                 Image chronicPic;
                 chronicPic = new ImageIcon("Sprites/Chronic/chronic" + i + ".png").getImage();
@@ -153,20 +148,16 @@ public class Player {
             }
         }
 
-         */
-        //if (playerchoice == 5) {
-            spritePics = new ArrayList<>();
+        if (playerChoice == 5) {
             for (int i = 0; i < 17; i++) {
                 Image lankPic;
                 lankPic = new ImageIcon("Sprites/Lank/lank" + i + ".png").getImage();
                 lankPic = lankPic.getScaledInstance(50, 100, Image.SCALE_SMOOTH);
                 spritePics.add(lankPic);
-                System.out.println(playerchoice);
             }
-       // }
-        /*
-        if (playerchoice == 6) {
-            spritePics = new ArrayList<>();
+        }
+
+        if (playerChoice == 6) {
             for (int i = 0; i < 17; i++) {
                 Image darkLankPic;
                 darkLankPic = new ImageIcon("Sprites/Dark Lank/darkLank" + i + ".png").getImage();
@@ -174,7 +165,7 @@ public class Player {
                 spritePics.add(darkLankPic);
             }
         }
-         */
+
     }
 
     public void move(){
@@ -220,18 +211,28 @@ public class Player {
         if (dir=="down/left"){
             bulletPic=bulletPics.get(1);
         }
-        bullets.add(new Bullet(dir,x,y,7*bulletSpeedMod,bulletPic));//make new bullet
+        bullets.add(new Bullet(dir,x,y-15,7*bulletSpeedMod,bulletPic));//make new bullet
         numOfBullets-=1;
     }
 
     public void setHitboxes(){
         //refresh hitboxes to keep up with movement, etc
-        hitBox=new Rectangle(x,y,15,40);
-        feetBox=new Rectangle(x,y+35,15,5);
-        leftBox=new Rectangle(x-5,y,5,35);
-        headBox=new Rectangle(x,y-2,15,8);
-        rightBox=new Rectangle(x+15,y,5,35);
-        shieldHitBox=new Rectangle(x+7-(int)shieldRadius,y+20-(int)shieldRadius,2*(int)shieldRadius,2*(int)shieldRadius);
+        hitBox=new Rectangle(x-20,y-30,37,65);
+        if (dir=="left") {
+            feetBox = new Rectangle(x - 5, y + 35, 25, 5);
+        }
+        else{
+            feetBox = new Rectangle(x - 15, y + 35, 25, 5);
+        }
+        leftBox=new Rectangle(x-10,y-25,5,60);
+        if (dir=="left") {
+            headBox = new Rectangle(x, y - 35, 15, 8);
+        }
+        else{
+            headBox = new Rectangle(x-15, y - 35, 15, 8);
+        }
+        rightBox=new Rectangle(x+10,y-25,5,60);
+        shieldHitBox=new Rectangle(x+5-(int)shieldRadius,y-(int)shieldRadius,2*(int)shieldRadius,2*(int)shieldRadius);
     }
 
     public void addPower(String name){//picks up an item
@@ -260,25 +261,25 @@ public class Player {
             invincible=true;
         }
         if (name!="Extra Life" && name!="Bullet Pack" && name!="Single Bullet" && name!="Invincibility") {
-            //these powerups can be receivec more than once as they are not permanents
+            //these powerups can be received more than once as they are not permanents
             currentPowers.add(name);
         }
     }
     public Image getFrame() {
         if (speedX != 0 && onGround) {
-            if(currentFrame<12||currentFrame>16){
-                currentFrame=12;
+            if(currentFrame<13||currentFrame>16){
+                currentFrame=13;
             }
             delay += 1;
             if (delay % wait == 0) {
-                if (currentFrame == 16) {
-                    currentFrame = 12;
-                }
                 currentFrame++;
+                if (currentFrame == 16) {
+                    currentFrame = 13;
+                }
             }
             return spritePics.get(currentFrame);
         }
-        if (onGround==false) {
+        if (!onGround) {
             return spritePics.get(2);
         }
         if (speedX == 0) {
@@ -288,23 +289,20 @@ public class Player {
     }
 
     public Image getShootFrame(String shootDir){
-        if(onGround){
-            if(shootDir=="up"){
-                return spritePics.get(11);
-            }
-            if(shootDir=="down"){
-                return spritePics.get(9);
-            }
-            if(shootDir=="right"||shootDir=="left"){
-                return spritePics.get(3);
-            }
-            if(shootDir=="up/right"||shootDir=="up/left"){
-                return spritePics.get(5);
-            }
-            if(shootDir=="down/right"||shootDir=="down/left"){
-                return spritePics.get(7);
-            }
+        if(shootDir=="up"){
+            return spritePics.get(11);
         }
+        if(shootDir=="down"){
+            return spritePics.get(9);
+        }
+        if(shootDir=="right"||shootDir=="left"){
+            return spritePics.get(3);
+        }
+        if(shootDir=="up/right"||shootDir=="up/left"){
+            return spritePics.get(5);
+        }
+        if(shootDir=="down/right"||shootDir=="down/left"){
+            return spritePics.get(7); }
         return null;
     }
 
