@@ -68,21 +68,21 @@ public class Player {
             leftBtn=KeyEvent.VK_A;
             upBtn=KeyEvent.VK_W;
             downBtn=KeyEvent.VK_S;
-            shootBtn= KeyEvent.VK_Q;
+            shootBtn= KeyEvent.VK_CONTROL;
             blockBtn=KeyEvent.VK_E;
-            jumpBtn=KeyEvent.VK_R;
+            jumpBtn=KeyEvent.VK_SPACE;
             dir="right";
         }
         else if (playerNum==2){
             x=800;
             y=125;
-            rightBtn=KeyEvent.VK_H;
-            leftBtn=KeyEvent.VK_F;
-            upBtn=KeyEvent.VK_T;
-            downBtn=KeyEvent.VK_G;
-            shootBtn= KeyEvent.VK_Y;
-            blockBtn=KeyEvent.VK_U;
-            jumpBtn=KeyEvent.VK_J;
+            rightBtn=KeyEvent.VK_RIGHT;
+            leftBtn=KeyEvent.VK_LEFT;
+            upBtn=KeyEvent.VK_UP;
+            downBtn=KeyEvent.VK_DOWN;
+            shootBtn= KeyEvent.VK_ENTER;
+            blockBtn=KeyEvent.VK_SLASH;
+            jumpBtn=KeyEvent.VK_SHIFT;
             dir="left";
         }
         //initialize hitboxes
