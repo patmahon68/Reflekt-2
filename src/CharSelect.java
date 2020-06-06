@@ -40,11 +40,11 @@ class CharSelect extends JPanel implements MouseMotionListener, MouseListener {
 
     public void loadSquares(){
         characterSquares=new ArrayList<>();
-        Rectangle rect1=new Rectangle(370,155,95,95);
+        Rectangle rect1=new Rectangle(365,155,95,95);
         Rectangle rect2=new Rectangle(560,155,95,95);
-        Rectangle rect3=new Rectangle(370,310,95,95);
+        Rectangle rect3=new Rectangle(365,310,95,95);
         Rectangle rect4=new Rectangle(560,310,95,95);
-        Rectangle rect5=new Rectangle(370,480,95,95);
+        Rectangle rect5=new Rectangle(365,480,95,95);
         Rectangle rect6=new Rectangle(560,480,95,95);
         characterSquares.add(rect1);
         characterSquares.add(rect2);
@@ -121,11 +121,11 @@ class CharSelect extends JPanel implements MouseMotionListener, MouseListener {
             g.drawImage(next, 770, 690, null);
         }
         if (left){
-            g.drawImage(choicePics.get(leftChoice),85,400,null);
+            g.drawImage(choicePics.get(leftChoice),85,350,null);
             g.drawImage(p1Selects.get(leftChoice), choiceL.x, choiceL.y,null);
         }
         if (right){
-            g.drawImage(choicePics.get(rightChoice),770,400,null);
+            g.drawImage(choicePics.get(rightChoice),770,350,null);
             g.drawImage(p2Selects.get(rightChoice), choiceR.x, choiceR.y,null);
         }
     }
@@ -169,7 +169,6 @@ class CharSelect extends JPanel implements MouseMotionListener, MouseListener {
         }
     }
 
-
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
     }
@@ -189,6 +188,5 @@ class CharSelect extends JPanel implements MouseMotionListener, MouseListener {
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
     }
-
 
 }

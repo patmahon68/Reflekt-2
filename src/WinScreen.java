@@ -3,18 +3,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-class StartMenu extends JPanel implements MouseMotionListener, MouseListener {
+class WinScreen extends JPanel implements MouseMotionListener, MouseListener {
     private Image back, title;
     private Main mainFrame;
     Image start = new ImageIcon("Screens/Main Menu/startButton.png").getImage();
     Image Instructions = new ImageIcon("Screens/Main Menu/instructionsButton.png").getImage();
     Rectangle startButton = new Rectangle(350,370,start.getWidth(null),start.getHeight(null));
-    Rectangle instructionsBtn=new Rectangle(150,500,Instructions.getWidth(null),Instructions.getHeight(null));
+    Rectangle instructionsBtn=new Rectangle(150,600,Instructions.getWidth(null),Instructions.getHeight(null));
 
 
 
-    public StartMenu(Main m){
-        back = new ImageIcon("Screens/Main Menu/storm.png").getImage();
+    public WinScreen(Main m){
+        back = new ImageIcon("Screens/Main Menu/storm.gif").getImage();
         back = back.getScaledInstance(1024,768,Image.SCALE_SMOOTH);
         mainFrame = m;
         setSize(1024,768);
@@ -37,14 +37,11 @@ class StartMenu extends JPanel implements MouseMotionListener, MouseListener {
     }
 
     public void mouseClicked(MouseEvent mouseEvent) {
-
     }
+    
     public void mousePressed(MouseEvent mouseEvent) {
         if (startButton.contains(mouseEvent.getX(),mouseEvent.getY())){
             mainFrame.showNewScreen("char");
-        }
-        if (instructionsBtn.contains(mouseEvent.getX(),mouseEvent.getY())){
-            mainFrame.showNewScreen("ins");
         }
     }
 

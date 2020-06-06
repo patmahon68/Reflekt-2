@@ -15,12 +15,11 @@ public class Main extends JFrame implements ActionListener{
     JPanel cards;
     //all buttons
 
-
-
     //all pages
     StartMenu menuPage =new StartMenu(this);
     CharSelect charPage = new CharSelect(this);
     LevelSelect levelPage = new LevelSelect(this);
+    Instructions instructions = new Instructions(this);
 
     public Main() {
         super("REFLEKT");
@@ -31,16 +30,16 @@ public class Main extends JFrame implements ActionListener{
 
         add(menuPage);
 
+        add(instructions);
 
         add(charPage);
-
 
         add(levelPage);
 
 
-
         cards = new JPanel(cLayout);//panel to hold the other panels
         cards.add(menuPage, "menu");
+        cards.add(instructions,"ins");
         cards.add(charPage ,"char");
         cards.add(levelPage,"level");
         add(cards);
@@ -69,14 +68,15 @@ public class Main extends JFrame implements ActionListener{
             cards.add(newGame,"game");
             cLayout.show(cards,"game");
             newGame.requestFocusInWindow();//new panel needs focus
-
-
         }
         if (name == "char") {
             charPage.requestFocusInWindow();
         }
         if(name == "level"){
             levelPage.requestFocusInWindow();
+        }
+        if(name == "ins"){
+            instructions.requestFocusInWindow();
         }
     }
     public static void main(String[] arguments) {

@@ -289,20 +289,40 @@ public class Player {
     }
 
     public Image getShootFrame(String shootDir){
-        if(shootDir=="up"){
-            return spritePics.get(11);
+        if (onGround) {
+            if (shootDir == "up") {
+                return spritePics.get(11);
+            }
+            if (shootDir == "down") {
+                return spritePics.get(9);
+            }
+            if (shootDir == "right" || shootDir == "left") {
+                return spritePics.get(3);
+            }
+            if (shootDir == "up/right" || shootDir == "up/left") {
+                return spritePics.get(5);
+            }
+            if (shootDir == "down/right" || shootDir == "down/left") {
+                return spritePics.get(7);
+            }
         }
-        if(shootDir=="down"){
-            return spritePics.get(9);
+        if(!onGround){
+            if (shootDir == "up") {
+                return spritePics.get(12);
+            }
+            if (shootDir == "down") {
+                return spritePics.get(10);
+            }
+            if (shootDir == "right" || shootDir == "left") {
+                return spritePics.get(4);
+            }
+            if (shootDir == "up/right" || shootDir == "up/left") {
+                return spritePics.get(6);
+            }
+            if (shootDir == "down/right" || shootDir == "down/left") {
+                return spritePics.get(8);
+            }
         }
-        if(shootDir=="right"||shootDir=="left"){
-            return spritePics.get(3);
-        }
-        if(shootDir=="up/right"||shootDir=="up/left"){
-            return spritePics.get(5);
-        }
-        if(shootDir=="down/right"||shootDir=="down/left"){
-            return spritePics.get(7); }
         return null;
     }
 
