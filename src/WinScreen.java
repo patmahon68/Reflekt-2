@@ -38,7 +38,7 @@ class WinScreen extends JPanel implements MouseMotionListener, MouseListener {
 
     public void mouseClicked(MouseEvent mouseEvent) {
     }
-    
+
     public void mousePressed(MouseEvent mouseEvent) {
         if (startButton.contains(mouseEvent.getX(),mouseEvent.getY())){
             mainFrame.showNewScreen("char");
