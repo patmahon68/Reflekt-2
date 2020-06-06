@@ -71,7 +71,6 @@ class LevelSelect extends JPanel implements MouseMotionListener, MouseListener {
             g.drawImage(next, 770, 690, null);
             g.drawImage(boldImages.get(choices.indexOf(choice)),choice.x,choice.y,null);
         }
-        System.out.println("levels");
     }
 
     @Override

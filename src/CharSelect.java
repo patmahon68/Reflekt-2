@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 class CharSelect extends JPanel implements MouseMotionListener, MouseListener {
@@ -17,7 +16,7 @@ class CharSelect extends JPanel implements MouseMotionListener, MouseListener {
     private ArrayList<Rectangle> characterSquares;
     private Image next = new ImageIcon("Screens/Main Menu/next.png").getImage();
     private Rectangle playButton=new Rectangle(770,690,next.getWidth(null),next.getHeight(null));
-    private Rectangle choicer,choicel;
+    private Rectangle choiceR, choiceL;
 
 
     public CharSelect(Main m){
@@ -123,20 +122,20 @@ class CharSelect extends JPanel implements MouseMotionListener, MouseListener {
         }
         if (left){
             g.drawImage(choicePics.get(leftChoice),85,400,null);
-            g.drawImage(p1Selects.get(leftChoice), choicel.x,choicel.y,null);
+            g.drawImage(p1Selects.get(leftChoice), choiceL.x, choiceL.y,null);
         }
         if (right){
             g.drawImage(choicePics.get(rightChoice),770,400,null);
-            g.drawImage(p2Selects.get(rightChoice), choicer.x,choicer.y,null);
+            g.drawImage(p2Selects.get(rightChoice), choiceR.x, choiceR.y,null);
         }
     }
 
     public int getP1(){
-        return leftChoice;
+        return leftChoice+1;
     }
 
     public int getP2(){
-        return rightChoice;
+        return rightChoice+1;
     }
 
     @Override
@@ -151,8 +150,7 @@ class CharSelect extends JPanel implements MouseMotionListener, MouseListener {
                 if (r.contains(mouseEvent.getX(),mouseEvent.getY())){
                     right=true;
                     rightChoice=characterSquares.indexOf(r);
-                    choicer=r;
-                    System.out.println(rightChoice);
+                    choiceR =r;
                 }
             }
 
@@ -162,7 +160,7 @@ class CharSelect extends JPanel implements MouseMotionListener, MouseListener {
                 if (r.contains(mouseEvent.getX(),mouseEvent.getY())){
                     left=true;
                     leftChoice=characterSquares.indexOf(r);
-                    choicel=r;
+                    choiceL =r;
                 }
             }
             if (playButton.contains(mouseEvent.getX(),mouseEvent.getY()) && left && right){
