@@ -1,24 +1,30 @@
+//The levelselect class is a JPanel used as a menu to select
+//which level will be played on by the players
+//all interactions with buttons and such in the level menu is in this class
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
 class LevelSelect extends JPanel implements MouseMotionListener, MouseListener {
-    private Image back,arenaSelect;
+    private Image back,arenaSelect;//background pic and UI for the menu
     private Main mainFrame;
-    Image next = new ImageIcon("Screens/Main Menu/next.png").getImage();
+    Image next = new ImageIcon("Screens/Main Menu/next.png").getImage();//pic for next button
     Rectangle playButton=new Rectangle(770,690,next.getWidth(null),next.getHeight(null));
-    private int version=0;
-    private boolean picked=false;
-    private Rectangle choice;
-    private ArrayList<Rectangle> choices;
-    private ArrayList<Image> boldImages;
+    //hitbox of the next button
+    private int version=0;//default version
+    private boolean picked=false;//player has not picked
+    private Rectangle choice;//currently highlighted hitbox
+    private ArrayList<Rectangle> choices;//all hitboxes that the player can click on to choose a map
+    private ArrayList<Image> boldImages;//when the player chooses a level, a higher quality version of the map
+    //is displayed there, as they are normally blurry
 
     public LevelSelect(Main m){
         back = new ImageIcon("Screens/Main Menu/storm.gif").getImage();
         back = back.getScaledInstance(1024,768,Image.SCALE_SMOOTH);
         arenaSelect = new ImageIcon("Screens/Level Screen/LevelSelectScreen.png").getImage();
         mainFrame = m;
+        //add hitboxes and all pictures that aren't already in the level select UI
         addChoiceBoxes();
         loadPics();
         setSize(1024,768);
@@ -33,6 +39,7 @@ class LevelSelect extends JPanel implements MouseMotionListener, MouseListener {
     }
 
     public void loadPics(){
+        //get all pictures into the class (the higher quality pictures of all the maps)
         boldImages=new ArrayList<>();
         Image pic1=new ImageIcon("Screens/Level Screen/SewerSelected.png").getImage();
         Image pic2=new ImageIcon("Screens/Level Screen/ForestSelected.png").getImage();
@@ -49,6 +56,7 @@ class LevelSelect extends JPanel implements MouseMotionListener, MouseListener {
     }
 
     public void addChoiceBoxes(){
+        //add the hitboxes for the buttons that select the maps
         choices=new ArrayList<>();
         Rectangle rect1=new Rectangle(50,130,260,200);
         Rectangle rect2=new Rectangle(380,130,260,200);
@@ -68,6 +76,7 @@ class LevelSelect extends JPanel implements MouseMotionListener, MouseListener {
         g.drawImage(back,0,0,null);
         g.drawImage(arenaSelect,0,0,null);
         if (picked) {
+            //only display the next button if a map has been selected
             g.drawImage(next, 770, 690, null);
             g.drawImage(boldImages.get(choices.indexOf(choice)),choice.x,choice.y,null);
         }
@@ -81,10 +90,12 @@ class LevelSelect extends JPanel implements MouseMotionListener, MouseListener {
     @Override
     public void mousePressed(MouseEvent mouseEvent) {
         if (playButton.contains(mouseEvent.getX(),mouseEvent.getY()) && picked){
+            //only move forward if the player has picked a map
             mainFrame.showNewScreen("game");
         }
         for (Rectangle r:choices){
             if (r.contains(mouseEvent.getX(),mouseEvent.getY())){
+                //if the player chooses a map, save their choice
                 picked=true;
                 version=choices.indexOf(r);
                 choice=r;
@@ -117,5 +128,6 @@ class LevelSelect extends JPanel implements MouseMotionListener, MouseListener {
 
     }
 
+    //accessor to know which version to use when creating the map
     public int getVersion(){return version;}
 }

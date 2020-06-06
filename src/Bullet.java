@@ -1,3 +1,5 @@
+//The bullet class holds the stats and functionality of bullets that the player fires
+//velocity, position, and other info are stored here
 import org.w3c.dom.css.Rect;
 
 import javax.swing.*;
@@ -7,13 +9,15 @@ import java.util.ArrayList;
 
 public class Bullet {
     private double velX,velY,x,y;
-    private Polygon hitbox;
+    private Polygon hitbox;//must be a polygon because angled bullets can not be accurately surrounded by a rectangular hitbox
     private Image pic;
     private String dir;
     private int numOfBounces;
     public Bullet(String dir,int px, int py, double speedmod, Image bPic){
+        //speedMod can be increased with powerups to make bullets move faster
         this.dir=dir;
         numOfBounces=0;
+        //depending on which way the bullet is fired, its starting position, velocity, and shape of its hitbox varies
         if (dir=="right"){
             x=px+15;
             y=py+7;
@@ -70,26 +74,26 @@ public class Bullet {
             velY=speedmod*Math.cos(45);
             hitbox=new Polygon(new int[]{(int)x,(int)x-10,(int)x-40,(int)x-30},new int[]{(int)y+10,(int)y+30,(int)y+40,(int)y},4);
         }
-
         pic=bPic;
     }
 
     public void move(String direction){
-        if (direction=="L/R"){
+        if (direction=="L/R"){//horizontal movement and vertical movement are done separately
             x+=velX;
         }
         else{
             y+=velY;
         }
-        setHitbox();
+        setHitbox();//refresh after moving
 
     }
 
     public void bounce(String direction, ArrayList<Image> bPics){
         if (direction=="L/R"){
-            x+=-velX;
-            velX=-velX;
-            if (dir=="right"){
+            x+=-velX;//bounce back
+            velX=-velX;//reverse direction
+            if (dir=="right"){//change the frame of the bullet so it now points
+                //in the new direction it is moving
                 dir="left";
                 pic=bPics.get(3);
             }
@@ -114,9 +118,9 @@ public class Bullet {
                 pic=bPics.get(2);
             }
         }
-        else{
-            y+=-velY;
-            velY=-velY;
+        else{//same as horizontal bounce
+            y+=-velY;//bounce opposite way
+            velY=-velY;//reverse direction
             if (dir=="up"){
                 dir="down";
                 pic=bPics.get(0);
@@ -145,6 +149,7 @@ public class Bullet {
     }
 
     public void setHitbox(){
+        //each direction has a different shaped hitbox
         if (dir=="right"){
             hitbox=new Polygon(new int[]{(int)x,(int)x,(int)x+40,(int)x+40},new int[]{(int)y,(int)y+15,(int)y+15,(int)y},4);
         }
@@ -173,12 +178,9 @@ public class Bullet {
 
     public Boolean isColliding(Rectangle r){
         return hitbox.intersects(r);
-    }
-    public Boolean isColliding(Area a){
-        a.intersect(new Area(hitbox));
-        return a!=null;
-    }
+    }//check for collision
 
+    //accessor methods
     public double getX(){
         return x;
     }

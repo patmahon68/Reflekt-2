@@ -1,22 +1,27 @@
+//the CharSelect class is the JPanel that serves as a menu for
+//choosing which characters will be used by the player
+//all functionality of buttons and graphics are in this class
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
 class CharSelect extends JPanel implements MouseMotionListener, MouseListener {
-    private Image back,charSelect;
+    private Image back,charSelect;//background pic and UI for the menu
     private Main mainFrame;
-    private boolean left=false;
+    private boolean left=false;//whether player 1 and player 2 have chosen their characters yet
+    //(left and right mouse buttons)
     private boolean right=false;
+    //index of each selection to save which character has been chosen
     private int leftChoice;
     private int rightChoice;
-    private ArrayList<Image> choicePics;
-    private ArrayList<Image> p1Selects;
+    private ArrayList<Image> choicePics;//all possible choices
+    private ArrayList<Image> p1Selects;//highlighted pictures of each character to show that they have been chosen
     private ArrayList<Image> p2Selects;
-    private ArrayList<Rectangle> characterSquares;
+    private ArrayList<Rectangle> characterSquares;//hitboxes to click on to select the players
     private Image next = new ImageIcon("Screens/Main Menu/next.png").getImage();
     private Rectangle playButton=new Rectangle(770,690,next.getWidth(null),next.getHeight(null));
-    private Rectangle choiceR, choiceL;
+    private Rectangle choiceR, choiceL;//the button that has been chosen for each player
 
 
     public CharSelect(Main m){
@@ -27,6 +32,7 @@ class CharSelect extends JPanel implements MouseMotionListener, MouseListener {
         setSize(1024,768);
         addMouseMotionListener(this);
         addMouseListener(this);
+        //get the hitboxes and pictures
         loadSquares();
         loadPics();
     }
@@ -39,12 +45,13 @@ class CharSelect extends JPanel implements MouseMotionListener, MouseListener {
 
 
     public void loadSquares(){
+        //initialize all hitboxes
         characterSquares=new ArrayList<>();
-        Rectangle rect1=new Rectangle(370,155,95,95);
+        Rectangle rect1=new Rectangle(365,155,95,95);
         Rectangle rect2=new Rectangle(560,155,95,95);
-        Rectangle rect3=new Rectangle(370,310,95,95);
+        Rectangle rect3=new Rectangle(365,310,95,95);
         Rectangle rect4=new Rectangle(560,310,95,95);
-        Rectangle rect5=new Rectangle(370,480,95,95);
+        Rectangle rect5=new Rectangle(365,480,95,95);
         Rectangle rect6=new Rectangle(560,480,95,95);
         characterSquares.add(rect1);
         characterSquares.add(rect2);
@@ -55,6 +62,7 @@ class CharSelect extends JPanel implements MouseMotionListener, MouseListener {
     }
 
     public void loadPics(){
+        //initialize all pictures
         choicePics=new ArrayList<>();
         Image pic1=new ImageIcon("Sprites/Giga Guy/gigaGuy0.png").getImage();
         Image pic2=new ImageIcon("Sprites/Peta Pal/petaPal0.png").getImage();
@@ -117,18 +125,22 @@ class CharSelect extends JPanel implements MouseMotionListener, MouseListener {
     public void paintComponent(Graphics g){
         g.drawImage(back,0,0,null);
         g.drawImage(charSelect,0,0,null);
-        if (left && right) {
+        if (left && right) {//only display the next button if both players have chosen a character
             g.drawImage(next, 770, 690, null);
         }
         if (left){
+            //if the player has chosen, display the appropriate highlighted box around the choice
+            //and display the selected image of the character that they have chosen
             g.drawImage(choicePics.get(leftChoice),85,400,null);
             g.drawImage(p1Selects.get(leftChoice), choiceL.x, choiceL.y,null);
         }
-        if (right){
+        if (right){//same as left but for other player
             g.drawImage(choicePics.get(rightChoice),770,400,null);
             g.drawImage(p2Selects.get(rightChoice), choiceR.x, choiceR.y,null);
         }
     }
+
+    //accessors to know which player sprites to use when making the Map and Players
 
     public int getP1(){
         return leftChoice+1;
@@ -147,15 +159,17 @@ class CharSelect extends JPanel implements MouseMotionListener, MouseListener {
     public void mousePressed(MouseEvent mouseEvent) {
         if (mouseEvent.getButton()==MouseEvent.BUTTON3){
             for (Rectangle r:characterSquares){
+                //player 2 chooses
                 if (r.contains(mouseEvent.getX(),mouseEvent.getY())){
-                    right=true;
+                    right=true;//player 2 has chosen
+                    //save the choice that has been mae
                     rightChoice=characterSquares.indexOf(r);
                     choiceR =r;
                 }
             }
 
         }
-        if (mouseEvent.getButton()==MouseEvent.BUTTON1){
+        if (mouseEvent.getButton()==MouseEvent.BUTTON1){//same as right click but for left click (player 1)
             for (Rectangle r:characterSquares){
                 if (r.contains(mouseEvent.getX(),mouseEvent.getY())){
                     left=true;
@@ -164,11 +178,11 @@ class CharSelect extends JPanel implements MouseMotionListener, MouseListener {
                 }
             }
             if (playButton.contains(mouseEvent.getX(),mouseEvent.getY()) && left && right){
+                //pressed next after each player has chosen a character
                 mainFrame.showNewScreen("level");
             }
         }
     }
-
 
     @Override
     public void mouseReleased(MouseEvent mouseEvent) {
@@ -189,6 +203,5 @@ class CharSelect extends JPanel implements MouseMotionListener, MouseListener {
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
     }
-
 
 }
