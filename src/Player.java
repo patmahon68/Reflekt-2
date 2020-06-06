@@ -119,7 +119,7 @@ public class Player {
             for (int i = 0; i < 16; i++) {
                 Image gigaPic;
                 gigaPic = new ImageIcon("Sprites/Giga Guy/gigaGuy" + i + ".png").getImage();
-                gigaPic = gigaPic.getScaledInstance(50, 100, Image.SCALE_SMOOTH);
+                gigaPic = gigaPic.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
                 spritePics.add(gigaPic);
             }
         }
@@ -127,7 +127,7 @@ public class Player {
             for (int i = 0; i < 16; i++) {
                 Image petaPic;
                 petaPic = new ImageIcon("Sprites/Peta Pal/petaPal" + i + ".png").getImage();
-                petaPic = petaPic.getScaledInstance(50, 100, Image.SCALE_SMOOTH);
+                petaPic = petaPic.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
                 spritePics.add(petaPic);
             }
         }
@@ -135,7 +135,7 @@ public class Player {
             for (int i = 0; i < 19; i++) {
                 Image tonicPic;
                 tonicPic = new ImageIcon("Sprites/Tonic/tonic" + i + ".png").getImage();
-                tonicPic = tonicPic.getScaledInstance(50, 100, Image.SCALE_SMOOTH);
+                tonicPic = tonicPic.getScaledInstance(45, 80, Image.SCALE_SMOOTH);
                 spritePics.add(tonicPic);
             }
         }
@@ -143,7 +143,7 @@ public class Player {
             for (int i = 0; i < 19; i++) {
                 Image chronicPic;
                 chronicPic = new ImageIcon("Sprites/Chronic/chronic" + i + ".png").getImage();
-                chronicPic = chronicPic.getScaledInstance(50, 100, Image.SCALE_SMOOTH);
+                chronicPic = chronicPic.getScaledInstance(45, 80, Image.SCALE_SMOOTH);
                 spritePics.add(chronicPic);
             }
         }
