@@ -924,6 +924,20 @@ public class Map extends JPanel implements KeyListener, ActionListener {
                     g.drawImage(p.getFrame(), newX, newY, null);
                 }
             }
+/*
+            g.setColor(new Color(255,0,0,100));
+            g.drawRect(p.getLeftBox().x,p.getLeftBox().y,p.getLeftBox().width,p.getLeftBox().height);
+            g.drawRect(p.getRightBox().x,p.getRightBox().y,p.getRightBox().width,p.getRightBox().height);
+            g.setColor(new Color(0,255,0,100));
+            g.drawRect(p.getHitBox().x,p.getHitBox().y,p.getHitBox().width,p.getHitBox().height);
+            g.setColor(new Color(0,0,255,100));
+            g.drawRect(p.getHeadBox().x,p.getHeadBox().y,p.getHeadBox().width,p.getHeadBox().height);
+            g.setColor(new Color(100,0,100,150));
+            g.drawRect(p.getFeetBox().x,p.getFeetBox().y,p.getFeetBox().width,p.getFeetBox().height);
+
+ */
+
+
 
             if (p.isInvincible()){//golden glow around player when they are invincible
                 g.setColor(new Color(252,255,45,75));
@@ -961,10 +975,10 @@ public class Map extends JPanel implements KeyListener, ActionListener {
                 int newX=p.getX()-(p.getFrame().getWidth(null)/2);
                 int newY=p.getY()-(p.getFrame().getHeight(null)/2);
                 if (p.getDir()=="right") {
-                    g.drawImage(bulletPic, newX + 9 * i, newY - 11, null);
+                    g.drawImage(bulletPic, newX + 9 * i, newY - 21, null);
                 }
                 else{
-                    g.drawImage(bulletPic, newX+20 + 9 * i, newY - 11, null);
+                    g.drawImage(bulletPic, newX+20 + 9 * i, newY - 21, null);
                 }
             }
         }
@@ -976,10 +990,10 @@ public class Map extends JPanel implements KeyListener, ActionListener {
                 int newX=p.getX()-(p.getFrame().getWidth(null)/2);
                 int newY=p.getY()-(p.getFrame().getHeight(null)/2);
                 if (p.getDir()=="right") {
-                    g.drawImage(heartPic, newX + 12 * i, newY - 24, null);
+                    g.drawImage(heartPic, newX + 12 * i, newY - 34, null);
                 }
                 else{
-                    g.drawImage(heartPic, newX+20 + 12 * i, newY - 24, null);
+                    g.drawImage(heartPic, newX+20 + 12 * i, newY - 34, null);
                 }
             }
         }
@@ -993,10 +1007,10 @@ public class Map extends JPanel implements KeyListener, ActionListener {
             int length=(int)((p.getShieldEnergy() / p.getMaxShieldEnergy()) * (25));//length of rectangle proportional to how much shield energy
             //is available
             if (p.getDir()=="right") {
-                g.fillRect(newX, newY + 7, length, 4);
+                g.fillRect(newX, newY -3, length, 4);
             }
             else{
-                g.fillRect(newX+20, newY + 7, length, 4);
+                g.fillRect(newX+20, newY -3, length, 4);
             }
             if (p.isActiveShield()) {
                 //if using a shield, have a blue glow around the player

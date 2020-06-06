@@ -226,10 +226,10 @@ public class Player {
         }
         leftBox=new Rectangle(x-10,y-25,5,60);
         if (dir=="left") {
-            headBox = new Rectangle(x, y - 35, 15, 8);
+            headBox = new Rectangle(x-10, y - 35, 25, 8);
         }
         else{
-            headBox = new Rectangle(x-15, y - 35, 15, 8);
+            headBox = new Rectangle(x-20, y - 35, 25, 8);
         }
         rightBox=new Rectangle(x+10,y-25,5,60);
         shieldHitBox=new Rectangle(x+5-(int)shieldRadius,y-(int)shieldRadius,2*(int)shieldRadius,2*(int)shieldRadius);
