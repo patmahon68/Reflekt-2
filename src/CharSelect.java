@@ -134,8 +134,8 @@ class CharSelect extends JPanel implements MouseMotionListener, MouseListener {
             g.drawImage(choicePics.get(leftChoice),85,400,null);
             g.drawImage(p1Selects.get(leftChoice), choiceL.x, choiceL.y,null);
         }
-        if (right){//same as left but for other player
-            g.drawImage(choicePics.get(rightChoice),770,400,null);
+        if (right){//same but for player 2
+            g.drawImage(choicePics.get(rightChoice),770,350,null);
             g.drawImage(p2Selects.get(rightChoice), choiceR.x, choiceR.y,null);
         }
     }

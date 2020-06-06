@@ -293,7 +293,9 @@ public class Player {
     }
 
     public Image getShootFrame(String shootDir){
+
         //players have different frames for each way they are aiming
+
         if (onGround) {
             if (shootDir == "up") {
                 return spritePics.get(11);

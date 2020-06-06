@@ -19,6 +19,7 @@ public class Main extends JFrame implements ActionListener{
     //all buttons
 
 
+
     //all pages that can be initialized from the start (the map class needs information from charPage
     //and levelPage before it can be made as the choices the user makes in them are parameters for the map)
 
@@ -45,7 +46,9 @@ public class Main extends JFrame implements ActionListener{
 
         add(levelPage);
 
+
         //initialize the card layout and add what pages exist so far to it
+
 
         cards = new JPanel(cLayout);//panel to hold the other panels
         cards.add(menuPage, "menu");

@@ -10,9 +10,9 @@ class StartMenu extends JPanel implements MouseMotionListener, MouseListener {
     Image start = new ImageIcon("Screens/Main Menu/startButton.png").getImage();
     Image Instructions = new ImageIcon("Screens/Main Menu/instructionsButton.png").getImage();
     Rectangle startButton = new Rectangle(350,370,start.getWidth(null),start.getHeight(null));
+
     Rectangle instructionsBtn=new Rectangle(150,600,Instructions.getWidth(null),Instructions.getHeight(null));
     //hitboxes and pictures for the 2 buttons
-
 
 
 
