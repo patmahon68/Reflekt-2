@@ -3,17 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="20f197d3-b65b-48ea-9b1a-0b89a8519257" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Reflekt 2/CharSelect.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reflekt 2/CharSelect.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Reflekt 2/LevelSelect.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reflekt 2/LevelSelect.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Reflekt 2/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reflekt 2/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Reflekt 2/Map.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reflekt 2/Map.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Reflekt 2/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reflekt 2/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Reflekt 2/StartMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reflekt 2/StartMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CharSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CharSelect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Map.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StartMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StartMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
