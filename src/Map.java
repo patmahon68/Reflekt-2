@@ -240,8 +240,6 @@ public class Map extends JPanel implements KeyListener, ActionListener {
             walls.add(r9);
             Rectangle r10=new Rectangle(226,-50,63,147);
             walls.add(r10);
-            Rectangle r11=new Rectangle(258,95,160,34);
-            walls.add(r11);
             Rectangle r12=new Rectangle(768,-50,159,116);
             walls.add(r12);
             Rectangle r13=new Rectangle(962,447,62,121);
@@ -286,8 +284,6 @@ public class Map extends JPanel implements KeyListener, ActionListener {
             walls.add(r32);
             Rectangle r33=new Rectangle(738,-50,65,145);
             walls.add(r33);
-            Rectangle r34=new Rectangle(610,94,158,35);
-            walls.add(r34);
             Rectangle r35=new Rectangle(638,352,96,61);
             walls.add(r35);
             Rectangle r36=new Rectangle(706,220,64,288);
