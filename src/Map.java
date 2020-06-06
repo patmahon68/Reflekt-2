@@ -849,6 +849,7 @@ public class Map extends JPanel implements KeyListener, ActionListener {
                 if (p.getDir()=="up"){
                     //draw an arrow in the direction the bullet would go if the player released at that time
                     g.drawImage(arrowPics.get(7),p.getX()+2,p.getY()-70, null);
+                    //newX and Y used to better position where arrow is and where frame should be
                     int newX=p.getX()-(p.getShootFrame("up").getWidth(null)/2);
                     int newY=p.getY()-(p.getShootFrame("up").getHeight(null)/2);
                     g.drawImage(p.getShootFrame("up") ,newX,newY, null);
@@ -908,10 +909,12 @@ public class Map extends JPanel implements KeyListener, ActionListener {
 
     public void drawPlayers(Graphics g){
         for (Player p:players) {
+            //newX and newY used for better positioning frame by frame
             int newX=p.getX()-(p.getFrame().getWidth(null)/2);
             int newY=p.getY()-(p.getFrame().getHeight(null)/2);
             if (!keys[p.getShootBtn()]) {
                 if (p.getDir() == "left") {
+                    //when facing left, use the same frame as the right but reverse it
                     int w = p.getFrame().getWidth(null);
                     int h = p.getFrame().getHeight(null);
                     g.drawImage(p.getFrame(), newX + w, newY, -w, h, null);
@@ -920,19 +923,6 @@ public class Map extends JPanel implements KeyListener, ActionListener {
                     g.drawImage(p.getFrame(), newX, newY, null);
                 }
             }
-/*
-            g.setColor(new Color(255,0,0,100));
-            g.drawRect(p.getLeftBox().x,p.getLeftBox().y,p.getLeftBox().width,p.getLeftBox().height);
-            g.drawRect(p.getRightBox().x,p.getRightBox().y,p.getRightBox().width,p.getRightBox().height);
-            g.setColor(new Color(0,255,0,100));
-            g.drawRect(p.getHitBox().x,p.getHitBox().y,p.getHitBox().width,p.getHitBox().height);
-            g.setColor(new Color(0,0,255,100));
-            g.drawRect(p.getHeadBox().x,p.getHeadBox().y,p.getHeadBox().width,p.getHeadBox().height);
-            g.setColor(new Color(100,0,100,150));
-            g.drawRect(p.getFeetBox().x,p.getFeetBox().y,p.getFeetBox().width,p.getFeetBox().height);
-
- */
-
 
 
             if (p.isInvincible()){//golden glow around player when they are invincible

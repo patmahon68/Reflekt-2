@@ -105,6 +105,7 @@ public class Player {
             Image bulletPic;
             bulletPic = new ImageIcon("Bullet/bullet" + i + ".png").getImage();
             if (i == 1 || i == 6) {
+                //different orientations of bullets need different dimensions
                 bulletPic = bulletPic.getScaledInstance(20, 40, Image.SCALE_SMOOTH);
             } else if (i == 4 || i == 5) {
                 bulletPic = bulletPic.getScaledInstance(40, 20, Image.SCALE_SMOOTH);
@@ -116,6 +117,7 @@ public class Player {
         }
         spritePics = new ArrayList<>();
         if (playerChoice == 1) {
+            //each of 6 characters has a different array of sprites
             for (int i = 0; i < 16; i++) {
                 Image gigaPic;
                 gigaPic = new ImageIcon("Sprites/Giga Guy/gigaGuy" + i + ".png").getImage();
@@ -218,6 +220,8 @@ public class Player {
     public void setHitboxes(){
         //refresh hitboxes to keep up with movement, etc
         hitBox=new Rectangle(x-20,y-30,37,65);
+        //being left vs right places the player in different parts of their frame, so to match where the sprite is
+        //within its frame, the hitboxes must be altered too
         if (dir=="left") {
             feetBox = new Rectangle(x - 5, y + 35, 25, 5);
         }
@@ -252,7 +256,7 @@ public class Player {
             lives+=1;
         }
         else if (name=="Fast Bullets"){
-            bulletSpeedMod=1.5;//bullets mvoe faster
+            bulletSpeedMod=1.5;//bullets move faster
         }
         else if (name=="Single Bullet"){
             numOfBullets=Math.min(numOfBullets+1,6);//get an extra bullet
@@ -266,29 +270,32 @@ public class Player {
         }
     }
     public Image getFrame() {
-        if (speedX != 0 && onGround) {
+        if (speedX != 0 && onGround) {//running on the ground
             if(currentFrame<13||currentFrame>16){
-                currentFrame=13;
+                currentFrame=13;//start running frame
             }
             delay += 1;
-            if (delay % wait == 0) {
+            if (delay % wait == 0) {//change frame
                 currentFrame++;
-                if (currentFrame == 16) {
+                if (currentFrame == 16) {//loop through same frames
                     currentFrame = 13;
                 }
             }
             return spritePics.get(currentFrame);
         }
-        if (!onGround) {
+        if (!onGround) {//mid air frame
             return spritePics.get(2);
         }
-        if (speedX == 0) {
+        if (speedX == 0) {//not moving
             return spritePics.get(1);
         }
-        return spritePics.get(0);
+        return spritePics.get(0);//default
     }
 
     public Image getShootFrame(String shootDir){
+
+        //players have different frames for each way they are aiming
+
         if (onGround) {
             if (shootDir == "up") {
                 return spritePics.get(11);

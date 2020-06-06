@@ -1,20 +1,22 @@
+//The powerup class holds the information for items that spawn around the map
+//items can move and be picked up, and this class holds the methods to do so
 import org.w3c.dom.css.Rect;
 
 import java.awt.*;
 
 public class Powerup {
-    private Rectangle hitbox,bottomBox;
+    private Rectangle hitbox,bottomBox;//hitbox for being picked up, bottom box for determining when on ground
     private String name;
-    private double vely;
+    private double vely;//can only move vertically
     private int x,y;
     private boolean onGround;
     private Image picture;
-    public Powerup(String name, int x, int y, Image img){
+    public Powerup(String name, int x, int y, Image img){//need a name and picture for an item to be created
         this.x=x;
         this.y=y;
         this.name=name;
         vely=0;
-        hitbox=new Rectangle(x,y,25,35);
+        hitbox=new Rectangle(x,y,25,35);//create the hitboxes
         bottomBox=new Rectangle(x,y+25,25,10);
         onGround=false;
         picture=img;
@@ -22,9 +24,11 @@ public class Powerup {
     }
 
     public void move(){
-        vely=Math.min(vely+0.2,7);
+        vely=Math.min(vely+0.2,7);//apply gravity when falling
         y+=vely;
     }
+
+    //accessors
 
     public Rectangle getHitbox(){
         return hitbox;
