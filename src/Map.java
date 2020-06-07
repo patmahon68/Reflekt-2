@@ -761,7 +761,6 @@ public class Map extends JPanel implements KeyListener, ActionListener {
     }
 
 
-
     public void checkPickUps(){
         for (int i=0;i<items.size();i++){
             for (Player p:players){
@@ -847,10 +846,11 @@ public class Map extends JPanel implements KeyListener, ActionListener {
         drawWinScreen(g);
     }
 
-    public void drawWinScreen(Graphics g){
+    public void drawWinScreen(Graphics g){//end of the game
         if (players.size()==1){//only one player left
             int winner=players.get(0).getPlayerChoice();
             g.drawImage(winScreens.get(winner-1), 0,0,null);
+            //draw the appropriate win screen depending on which character is the one remaining at the end
             mainFrame.showNewScreen("win");
         }
     }
@@ -984,7 +984,9 @@ public class Map extends JPanel implements KeyListener, ActionListener {
             for (int i=0;i<p.getNumOfBullets();i++){
                 int newX=p.getX()-(p.getFrame().getWidth(null)/2);
                 int newY=p.getY()-(p.getFrame().getHeight(null)/2);
-                if (p.getDir()=="right") {
+                if (p.getDir()=="right") {//when displaying health, ammo, and shield energy, the position
+                    //of the player within its frame changes when facing left or right so the position
+                    //of the player's stats has to match it
                     g.drawImage(bulletPic, newX + 9 * i, newY - 21, null);
                 }
                 else{

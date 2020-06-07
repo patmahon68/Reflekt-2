@@ -218,7 +218,7 @@ public class Player {
 
     public void setHitboxes(){
         //refresh hitboxes to keep up with movement, etc
-        hitBox=new Rectangle(x-20,y-30,37,65);
+        hitBox=new Rectangle(x-20,y-20,37,55);
         //being left vs right places the player in different parts of their frame, so to match where the sprite is
         //within its frame, the hitboxes must be altered too
         if (dir=="left") {

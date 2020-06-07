@@ -3,30 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="648bcfb3-b971-4d3a-b5fe-e882bf21e4d2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screens/Character Screen/CharacterSelectScreen.png" beforeDir="false" afterPath="$PROJECT_DIR$/Screens/Character Screen/CharacterSelectScreen.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screens/Win Screens/chronicp1wins.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screens/Win Screens/chronicp2wins.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screens/Win Screens/darklankp1wins.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screens/Win Screens/darklankp2wins.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screens/Win Screens/gigaguyp1wins.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screens/Win Screens/gigaguyp2wins.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screens/Win Screens/lankp1wins.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screens/Win Screens/lankp2wins.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screens/Win Screens/petapalp1wins.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screens/Win Screens/petapalp2wins.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screens/Win Screens/tonicp1wins.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screens/Win Screens/tonicp2wins.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Reflekt 2/CharSelect.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reflekt 2/CharSelect.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Reflekt 2/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reflekt 2/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Reflekt 2/Map.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reflekt 2/Map.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Reflekt 2/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reflekt 2/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Reflekt 2/StartMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reflekt 2/StartMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Reflekt 2/WinScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Reflekt 2/WinScreen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CharSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CharSelect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Instructions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Instructions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Map.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StartMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StartMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/WinScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WinScreen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -57,6 +38,18 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -94,6 +87,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="WindowStateProjectService">
     <state x="559" y="233" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1590973182233">
