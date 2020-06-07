@@ -28,10 +28,12 @@ public class Map extends JPanel implements KeyListener, ActionListener {
     private int itemCounter,version, energyCounter;//frame counters
     private Block block;//movable block
     private ArrayList<Image> arrowPics;
+    private ArrayList<Image> winScreens;
     private Image blockPic;
     private ArrayList<Player> players;
     private ArrayList<EnergyBall> energyBalls;
     private boolean []keys;
+    private Player winner=null;
     private Main mainFrame;
     javax.swing.Timer myTimer;
 
@@ -109,6 +111,13 @@ public class Map extends JPanel implements KeyListener, ActionListener {
             }
             arrowPics.add(pic);
         }
+
+        winScreens= new ArrayList<>();
+        for (int i=0;i<6;i++){//Screens for when player wins
+            Image pic= new ImageIcon("Screens/Win Screens/WinScreen"+i+".png").getImage();
+            winScreens.add(pic);
+        }
+
         itemPics=new ArrayList<>();//powerups
         Image mag=new ImageIcon("items/magazine.png").getImage();
         itemPics.add(mag);
@@ -132,6 +141,7 @@ public class Map extends JPanel implements KeyListener, ActionListener {
         eyePic=eyePic.getScaledInstance(45,45,Image.SCALE_SMOOTH);
         blockPic=new ImageIcon("items/block.png").getImage();//for moving block
         blockPic=blockPic.getScaledInstance(130,130,Image.SCALE_SMOOTH);
+
     }
 
     public ArrayList<Rectangle> makeWalls(int version){
@@ -454,7 +464,19 @@ public class Map extends JPanel implements KeyListener, ActionListener {
         }
         block.move();
         walls.remove(walls.size()-1);//change the position of the wall surrounding the block to move with it
-        walls.add(block.getHitbox());
+        walls.add(block.getHitbox());for (int i=0;i<8;i++){//arrow used to see where player is aiming
+            Image pic= new ImageIcon("Arrow/Arrow"+i+".png").getImage();
+            if (i==0 || i==7){
+                pic=pic.getScaledInstance(10,35,Image.SCALE_SMOOTH);
+            }
+            else if (i==1 || i==4){
+                pic=pic.getScaledInstance(35,10,Image.SCALE_SMOOTH);
+            }
+            else{
+                pic=pic.getScaledInstance(35,35,Image.SCALE_SMOOTH);
+            }
+            arrowPics.add(pic);
+        }
         for (Player p:players){
             if (block.getHitbox().intersects(new Rectangle(p.getX(),p.getY()+15,p.getHitBox().width,10))){
                 //if the player gets squished by the block
@@ -736,17 +758,9 @@ public class Map extends JPanel implements KeyListener, ActionListener {
         else{
             players.remove(p);//player has died and is out of lives
         }
-        checkOver();
     }
 
-    ///////////////////////////////////////////////
 
-    public void checkOver(){
-        if (players.size()==1){//only one player left
-            System.out.println("winner");
-        }
-    }
-    ///////////////////////////////////////////////
 
     public void checkPickUps(){
         for (int i=0;i<items.size();i++){
@@ -830,7 +844,17 @@ public class Map extends JPanel implements KeyListener, ActionListener {
         drawHealth(g);
         drawShields(g);
         drawItems(g);
+        drawWinScreen(g);
     }
+
+    public void drawWinScreen(Graphics g){
+        if (players.size()==1){//only one player left
+            int winner=players.get(0).getPlayerChoice();
+            g.drawImage(winScreens.get(winner-1), 0,0,null);
+            mainFrame.showNewScreen("win");
+        }
+    }
+
     public void drawBackground(Graphics g){
         g.drawImage(background,0,0,null);
         if (version==0 || version==3){//block is in this version

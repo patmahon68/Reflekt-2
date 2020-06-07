@@ -131,7 +131,7 @@ class CharSelect extends JPanel implements MouseMotionListener, MouseListener {
         if (left){
             //if the player has chosen, display the appropriate highlighted box around the choice
             //and display the selected image of the character that they have chosen
-            g.drawImage(choicePics.get(leftChoice),85,400,null);
+            g.drawImage(choicePics.get(leftChoice),85,350,null);
             g.drawImage(p1Selects.get(leftChoice), choiceL.x, choiceL.y,null);
         }
         if (right){//same but for player 2

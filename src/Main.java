@@ -29,6 +29,9 @@ public class Main extends JFrame implements ActionListener{
     CharSelect charPage = new CharSelect(this);
     LevelSelect levelPage = new LevelSelect(this);
     Instructions instructions = new Instructions(this);
+    WinScreen winning = new WinScreen(this);
+    Map newGame;
+
 
     public Main() {
         super("REFLEKT");
@@ -39,12 +42,10 @@ public class Main extends JFrame implements ActionListener{
 
         //add the pages that currently exist
         add(menuPage);
-
         add(instructions);
-
         add(charPage);
-
         add(levelPage);
+        add(winning);
 
 
         //initialize the card layout and add what pages exist so far to it
@@ -55,6 +56,7 @@ public class Main extends JFrame implements ActionListener{
         cards.add(instructions,"ins");
         cards.add(charPage ,"char");
         cards.add(levelPage,"level");
+        cards.add(winning,"win");
         add(cards);
         setResizable(false);
         setVisible(true);
@@ -75,7 +77,7 @@ public class Main extends JFrame implements ActionListener{
         cLayout.show(cards,name);//show the new panel
         if (name=="game"){
             //time for the map to be created
-            Map newGame=new Map(levelPage.getVersion(),this,charPage.getP1(),charPage.getP2());
+            newGame=new Map(levelPage.getVersion(),this,charPage.getP1(),charPage.getP2());
             //create the map using the info from the previous 2 menus
             add(newGame);
             newGame.setLayout(null);
@@ -94,7 +96,11 @@ public class Main extends JFrame implements ActionListener{
         if(name == "ins"){
             instructions.requestFocusInWindow();
         }
+        if (name == "win"){
+            winning.requestFocusInWindow();
+        }
     }
+
     public static void main(String[] arguments) {
         Main frame = new Main();//creating the Main to go through the constructor
     }

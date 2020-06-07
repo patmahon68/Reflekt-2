@@ -36,7 +36,7 @@ public class Player {
 
     private ArrayList<Image> spritePics;
 
-    public Player(int playerNum,int playerchoice){
+    public Player(int playerNum, int playerchoice){
         //starting values for all variables
         wait=75;
         delay=0;
@@ -68,8 +68,8 @@ public class Player {
             leftBtn=KeyEvent.VK_A;
             upBtn=KeyEvent.VK_W;
             downBtn=KeyEvent.VK_S;
-            shootBtn= KeyEvent.VK_CONTROL;
-            blockBtn=KeyEvent.VK_E;
+            shootBtn= KeyEvent.VK_SHIFT;
+            blockBtn=KeyEvent.VK_CONTROL;
             jumpBtn=KeyEvent.VK_SPACE;
             dir="right";
         }
@@ -80,9 +80,9 @@ public class Player {
             leftBtn=KeyEvent.VK_LEFT;
             upBtn=KeyEvent.VK_UP;
             downBtn=KeyEvent.VK_DOWN;
-            shootBtn= KeyEvent.VK_ENTER;
-            blockBtn=KeyEvent.VK_SLASH;
-            jumpBtn=KeyEvent.VK_SHIFT;
+            shootBtn= KeyEvent.VK_K;
+            blockBtn=KeyEvent.VK_L;
+            jumpBtn=KeyEvent.VK_J;
             dir="left";
         }
         //initialize hitboxes
@@ -98,7 +98,6 @@ public class Player {
     }
 
     public void loadPics() {
-        System.out.println("loading pics");
         bulletPics = new ArrayList<>();
         //create the frames for bullets
         for (int i = 1; i < 9; i++) {
@@ -447,5 +446,9 @@ public class Player {
     public int getJumpCounter(){return jumpCounter;}
     public void setJumpCounter(int n){jumpCounter=n;}
     public boolean isInvincible(){return invincible;}
+
+    public int getPlayerChoice(){
+        return playerChoice;
+    }
 
 }
